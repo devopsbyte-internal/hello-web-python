@@ -1,0 +1,9 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0b1020; color: #e6e9ef; margin: 0; }
+.wrap { max-width: 720px; margin: 12vh auto; padding: 24px; background: #11162a; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+h1 { margin-top: 0; }
+button { padding: 10px 16px; border: 0; border-radius: 10px; background: #6aa9ff; color: #071022; font-weight: 600; cursor: pointer; }
+button:hover { filter: brightness(1.05); }
+pre { background: #0a0f1f; padding: 12px; border-radius: 10px; overflow: auto; }
+code { background: #0a0f1f; padding: 2px 6px; border-radius: 6px; }
+a { color: #89b4fa; }

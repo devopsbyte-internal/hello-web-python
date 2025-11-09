@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>👋 Hello, Web!</h1>
+      <p>This is a minimal Flask site. It feels like <code>vite dev --host</code>, but for Python.</p>
+      <button id="ping">Ping API</button>
+      <pre id="out">Click the button to call <code>/api/hello</code>...</pre>
+    </main>
+    <script>
+      const btn = document.getElementById('ping');
+      const out = document.getElementById('out');
+      btn.addEventListener('click', async () => {
+        out.textContent = 'Calling /api/hello...';
+        try {
+          const res = await fetch('/api/hello');
+          const data = await res.json();
+          out.textContent = JSON.stringify(data, null, 2);
+        } catch (e) {
+          out.textContent = 'Error: ' + e;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hello-web"
+version = "0.1.0"
+description = "Minimal Flask website to practice local dev and CI."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Your Name" }]
+license = { text = "MIT" }
+dependencies = ["flask>=3.0,<4"]
+
+[project.scripts]
+hello-web = "hello_web.app:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9",
+  "ruff>=0.6,<1",
+  "build>=1.2,<2"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E","F","I","UP","B"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
