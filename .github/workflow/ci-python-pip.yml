@@ -1,0 +1,40 @@
+name: CI - Python (hello-web)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: self-hosted
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'   # match your server (change if needed)
+          cache: 'pip'
+          cache-dependency-path: |
+            **/pyproject.toml
+            **/requirements*.txt
+
+      - name: Upgrade pip
+        run: python -m pip install -U pip
+
+      - name: Install (editable + dev extras)
+        run: pip install -e ".[dev]"
+
+      - name: Tests (pytest)
+        run: pytest
+
+      - name: Build sdist/wheel
+        run: python -m build
+
+      - name: Verify artifacts exist
+        run: ls -l && ls -l dist
